@@ -5,8 +5,8 @@ from escpos import *
 app = FastAPI()
 
 class PrintData(BaseModel):
-    name: str
-    surname: str
+    turn: str
+    seat: str
     qr: str
 
 @app.post("/print-data")
@@ -15,13 +15,15 @@ def info_to_print(data: PrintData):
     p = printer.Serial("COM5")
     p.magic.force_encoding("CP858")
 
-    p.text(data.name)
+    p.set(align="center", custom_size=True, width=2, height=2)
+    p.text(data.turn)
     p.ln()
-    p.text(data.surname)
     p.ln()
-    p.text("CODIGO QR")
+    p.text(data.seat)
     p.ln()
-    p.qr(data.qr)
+    p.ln()
+    p.set(align="center", custom_size=True, width=1, height=1)
+    p.qr(data.qr, size=8)
     p.ln()
     p.cut()
 
