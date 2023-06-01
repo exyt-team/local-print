@@ -8,6 +8,7 @@ from typing import Optional
 app = FastAPI()
 
 origins = ['*']
+p = printer.Serial("COM5")
 
 app.add_middleware(
     CORSMiddleware,
@@ -32,10 +33,7 @@ class PrintData(BaseModel):
 @app.post("/print")
 def info_to_print(data: PrintData):
     
-    try:
-        p = printer.Serial("COM5")
-    except Exception as e:
-        print(e)
+    if(p == None or p == ""):
         return JSONResponse(
         status_code=404,
         content={"context": "no_printer_found"},
