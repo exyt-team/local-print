@@ -24,6 +24,7 @@ class PrintData(BaseModel):
     code: Optional[str]
     name: Optional[str]
     collective: Optional[str]
+    collective_name: Optional[str]
     identifier: Optional[str]
     status: Optional[str]
     email: Optional[str]
@@ -52,6 +53,10 @@ def info_to_print(data: PrintData):
     p.ln()
     p.set(align="center", custom_size=True, width=2, height=2)
     p.text(data.note)
+    p.ln()
+    p.ln()
+    p.set(align="center", custom_size=True, width=2, height=2)
+    p.text(data.collective_name)
     p.ln()
     p.cut()
 
