@@ -44,6 +44,10 @@ def info_to_print(data: PrintData):
     p.magic.force_encoding("CP858")
 
     p.set(align="center", custom_size=True, width=2, height=2)
+    p.text(data.collective_name)
+    p.ln()
+    p.ln()
+    p.set(align="center", custom_size=True, width=2, height=2)
     p.text(data.phone)
     p.ln()
     p.ln()
@@ -53,10 +57,6 @@ def info_to_print(data: PrintData):
     p.ln()
     p.set(align="center", custom_size=True, width=2, height=2)
     p.text(data.note)
-    p.ln()
-    p.ln()
-    p.set(align="center", custom_size=True, width=2, height=2)
-    p.text(data.collective_name)
     p.ln()
     p.cut()
 
